@@ -18,6 +18,6 @@ int main(void) {
     Unit eUnit2(5, 1, 100, 6, 7); 
     Unit eUnit3(6, 0, 100, 6, 6);
 
-    
+    return 0;
     
 }
