@@ -1,14 +1,32 @@
-// Copyright 2025 Mroma
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     https://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+#pragma once
+#include <iostream> 
+#include <vector>
 
+#define MAX_PLAYERS     2   // Two for now, can be expanded later
+#define POWER_SQUARES   2   // Number of power squares on the grid
+#define HOME_SQUARES    2   // Number of home squares on the grid
+
+
+// Matthew Romano - December 14th, 2025 - Turn Based Game
+// GameState header file declaration
+
+class GameState {
+    int turnNumber;
+    int currentPlayerID;
+    int playerEnergy[MAX_PLAYERS];
+    int width, height;  // Dimensions of the game grid
+    std::vector<Unit> units;    // Vector of all units in the game 
+    std::pair <int, int> powerSquares[POWER_SQUARES];   // Power square positions
+    std::pair<int, int> homeSquares[HOME_SQUARES];      // Home square positions
+
+public:
+    // Constructor
+    GameState(int width, int height);
+
+    // Game Functions 
+    bool activateUnit(int unitID);
+    bool moveUnit(int unitID, int newX, int newY);
+    bool attackUnit(int attackerID, int targetID);
+    void endTurn();
+    bool checkWinCondition() const;
+};
